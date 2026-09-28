@@ -2,37 +2,39 @@
 
 /*
  * DESIGN TOKENS — the only place colors and fonts are defined.
- * Components use semantic utilities (bg-bg, text-fg, text-primary, border-border…),
- * so swapping in your palette means editing just these values.
+ * Palette taken from the resume: navy headings, orange accents, blue links.
+ * Components use semantic utilities (bg-bg, text-fg, text-heading, text-primary…),
+ * so restyling the site means editing just these values.
  */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
-  /* Placeholder palette — replace with your own */
-  --color-bg: #fafaf9;         /* page background */
+  --color-bg: #f6f8fb;         /* page background */
   --color-surface: #ffffff;    /* cards, header */
-  --color-fg: #1c1917;         /* main text */
-  --color-muted: #57534e;      /* secondary text */
-  --color-border: #e7e5e4;     /* dividers, card borders */
-  --color-primary: #2563eb;    /* links, buttons, highlights */
+  --color-fg: #1e293b;         /* main text */
+  --color-muted: #52607a;      /* secondary text */
+  --color-border: #dde3ec;     /* dividers, card borders */
+  --color-heading: #1f3a5f;    /* resume navy — headings, name */
+  --color-primary: #1d5fb4;    /* resume blue — links, buttons */
   --color-primary-fg: #ffffff; /* text on primary */
-  --color-accent: #f59e0b;     /* small decorative touches */
+  --color-accent: #f58220;     /* resume orange — bars, bullets, highlights */
 }
 
-/* Dark mode: override the same tokens. Delete this block if you want light only. */
+/* Dark mode: same roles, navy-based. Delete this block if you want light only. */
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --color-bg: #0c0a09;
-    --color-surface: #1c1917;
-    --color-fg: #f5f5f4;
-    --color-muted: #a8a29e;
-    --color-border: #292524;
-    --color-primary: #60a5fa;
-    --color-primary-fg: #0c0a09;
-    --color-accent: #fbbf24;
+    --color-bg: #0d1726;
+    --color-surface: #142237;
+    --color-fg: #e5ebf3;
+    --color-muted: #9aabc3;
+    --color-border: #24344d;
+    --color-heading: #f1f5fa;
+    --color-primary: #6aa6ec;
+    --color-primary-fg: #0d1726;
+    --color-accent: #f7931e;
   }
 }
 

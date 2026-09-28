@@ -1,11 +1,11 @@
-import { links, profile } from "~/data/resume";
+import { fullName, links } from "~/data/resume";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t-2 border-accent bg-surface">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-8 text-sm text-muted">
         <p>
-          © {new Date().getFullYear()} {profile.name}
+          © {new Date().getFullYear()} {fullName}
         </p>
         <ul className="flex gap-4">
           {links.map((link) => (
