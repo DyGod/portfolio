@@ -2,7 +2,7 @@
 
 Personal portfolio built with [React Router v8](https://reactrouter.com/) framework mode (the successor to Remix), Tailwind CSS v4, and TypeScript. Every page is pre-rendered to static HTML at build time.
 
-**Requires Node ≥ 22.22** (see `.nvmrc`). With nvm-windows: `nvm use 22.23.3`.
+**Requires Node ≥ 22.22** (see `.nvmrc`). With nvm-windows: `nvm use 26.10.0`.
 
 ## Scripts
 
