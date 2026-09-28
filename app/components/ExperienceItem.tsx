@@ -5,7 +5,7 @@ export function ExperienceItem({ item }: { item: Experience }) {
     <li className="grid gap-1 sm:grid-cols-[1fr_auto] sm:gap-x-6">
       <h3 className="font-display font-bold text-heading">
         {item.company} <span className="text-accent">|</span>{" "}
-        <span className="font-sans text-sm font-normal italic text-muted">
+        <span className="font-sans text-sm font-normal italic text-accent-2">
           {item.role} ({item.type})
         </span>
       </h3>

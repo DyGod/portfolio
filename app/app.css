@@ -20,6 +20,15 @@
   --color-primary: #1d5fb4;    /* resume blue — links, buttons */
   --color-primary-fg: #ffffff; /* text on primary */
   --color-accent: #f58220;     /* resume orange — bars, bullets, highlights */
+  --color-accent-2: #8c699f;   /* purple — tech tags, skill years, small details */
+
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 /* Dark mode: same roles, navy-based. Delete this block if you want light only. */
@@ -35,6 +44,7 @@
     --color-primary: #6aa6ec;
     --color-primary-fg: #0d1726;
     --color-accent: #f7931e;
+    --color-accent-2: #b99bcc;
   }
 }
 

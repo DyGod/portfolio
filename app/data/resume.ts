@@ -42,8 +42,6 @@ export const profile = {
   lastName: "Cosca",
   title: "Frontend Developer",
   specialty: "Shopify & Headless E-Commerce",
-  tagline:
-    "I build fully custom, fast e-commerce storefronts with Shopify Liquid, Shopify Hydrogen (Remix), React and Vue.",
   location: "Pasig City, Philippines",
   email: "coscamarkdylan@hotmail.com",
   siteUrl: "https://markdylan.dev",
@@ -58,17 +56,22 @@ export const stats: Stat[] = [
   { value: "3", label: "Shopify developer certifications" },
 ];
 
-export const about: string[] = [
-  "Frontend Developer with 9+ years of experience building fully custom, fast e-commerce storefronts. Specialized in Shopify Liquid, Shopify Hydrogen (Remix), ReactJS and VueJS, with backend experience in PHP/Laravel and NodeJS, plus code architecture, custom Shopify apps and 3rd-party integrations.",
-  "I use Claude Code and GitHub Copilot for AI-assisted code review, debugging, testing and docs, and build AI-powered storefront features.",
+/*
+ * Short intro shown in the hero. Segments with a `highlight` are emphasized
+ * in that accent color: "primary" (blue), "accent" (orange), "accent-2" (purple).
+ */
+export type IntroSegment = { text: string; highlight?: "primary" | "accent" | "accent-2" };
+
+export const intro: IntroSegment[] = [
+  { text: "Frontend developer", highlight: "primary" },
+  { text: " with 9+ years building fast, fully custom " },
+  { text: "Shopify & e-commerce", highlight: "accent" },
+  { text: " storefronts, using " },
+  { text: "AI workflows", highlight: "accent-2" },
+  { text: " for code review, testing and smarter storefront features." },
 ];
 
-export const keySkills: string[] = [
-  "Detailed interpersonal and work communication",
-  "AI-assisted development (Claude Code, GitHub Copilot)",
-  "Adaptable problem solving",
-  "Advanced e-commerce knowledge and development",
-];
+export const introText = intro.map((segment) => segment.text).join("");
 
 export const links: Link[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/mark-dylan-cosca-703230163" },
@@ -173,6 +176,25 @@ export const projects: Project[] = [
   },
 ];
 
+/*
+ * Sites shown in the Projects carousel. Logos live in public/logos/ as 128×128 PNGs
+ * on a white square so every tile renders at the same size.
+ */
+export type Site = { name: string; url: string; logo: string };
+
+export const sites: Site[] = [
+  { name: "Spanx", url: "https://spanx.com/", logo: "/logos/spanx.png" },
+  { name: "Turtle Beach", url: "https://www.turtlebeach.com/", logo: "/logos/turtle-beach.png" },
+  { name: "e.l.f. Cosmetics", url: "https://www.elfcosmetics.com/", logo: "/logos/elf.png" },
+  { name: "Boll & Branch", url: "https://www.bollandbranch.com/", logo: "/logos/boll-and-branch.png" },
+  { name: "Chubbies", url: "https://www.chubbiesshorts.com/", logo: "/logos/chubbies.png" },
+  { name: "5 Star Nutrition", url: "https://5starnutrition.com/", logo: "/logos/5-star-nutrition.png" },
+  { name: "Grown Alchemist", url: "https://grownalchemist.com/", logo: "/logos/grown-alchemist.png" },
+  { name: "Nomad", url: "https://nomadgoods.com/", logo: "/logos/nomad.png" },
+  { name: "Strandbags", url: "https://www.strandbags.com.au/", logo: "/logos/strandbags.png" },
+  { name: "Shona Joy", url: "https://shonajoy.com/", logo: "/logos/shona-joy.png" },
+];
+
 export const skills: SkillGroup[] = [
   {
     category: "Frontend",
@@ -199,6 +221,15 @@ export const skills: SkillGroup[] = [
       { name: "Ionic" },
       { name: "Quasar" },
       { name: "SEO" },
+    ],
+  },
+  {
+    category: "Key skills",
+    items: [
+      { name: "Detailed interpersonal and work communication" },
+      { name: "AI-assisted development (Claude Code, GitHub Copilot)" },
+      { name: "Adaptable problem solving" },
+      { name: "Advanced e-commerce knowledge and development" },
     ],
   },
 ];

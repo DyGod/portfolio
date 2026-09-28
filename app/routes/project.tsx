@@ -32,8 +32,8 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
 
   return (
     <article className="py-16">
-      <Link to="/#projects" className="text-sm font-medium text-muted hover:text-primary">
-        ← All projects
+      <Link to="/#highlights" className="text-sm font-medium text-muted hover:text-primary">
+        ← All highlights
       </Link>
 
       <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-accent">{project.platform}</p>
@@ -68,7 +68,7 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block rounded-lg border border-border bg-surface px-4 py-2 font-medium transition-colors hover:border-primary"
+                className="inline-block border-2 border-border bg-surface px-4 py-2 font-medium transition-colors hover:border-primary"
               >
                 {link.label} ↗
               </a>

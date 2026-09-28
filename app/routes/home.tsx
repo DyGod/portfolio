@@ -3,17 +3,18 @@ import { ExperienceItem } from "~/components/ExperienceItem";
 import { Hero } from "~/components/Hero";
 import { ProjectCard } from "~/components/ProjectCard";
 import { Section } from "~/components/Section";
+import { SiteCarousel } from "~/components/SiteCarousel";
 import { SkillList } from "~/components/SkillList";
 import {
-  about,
   certifications,
   education,
   experience,
   fullName,
-  keySkills,
+  introText,
   links,
   profile,
   projects,
+  sites,
   skills,
 } from "~/data/resume";
 
@@ -21,9 +22,9 @@ export function meta({}: Route.MetaArgs) {
   const title = `${fullName} — ${profile.title} | ${profile.specialty}`;
   return [
     { title },
-    { name: "description", content: profile.tagline },
+    { name: "description", content: introText },
     { property: "og:title", content: title },
-    { property: "og:description", content: profile.tagline },
+    { property: "og:description", content: introText },
     { property: "og:type", content: "website" },
     { property: "og:url", content: profile.siteUrl },
   ];
@@ -34,24 +35,11 @@ export default function Home() {
     <>
       <Hero />
 
-      <Section id="about" title="About">
-        <div className="grid gap-10 md:grid-cols-[3fr_2fr]">
-          <div className="space-y-4 text-lg text-muted">
-            {about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-          <div>
-            <h3 className="mb-3 font-display font-bold text-heading">Key skills</h3>
-            <ul className="space-y-2">
-              {keySkills.map((skill) => (
-                <li key={skill} className="relative pl-5 text-muted">
-                  <span aria-hidden className="absolute left-0 text-accent">•</span>
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
+      <Section id="highlights" title="Highlights">
+        <div className="grid gap-6 sm:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
         </div>
       </Section>
 
@@ -64,11 +52,10 @@ export default function Home() {
       </Section>
 
       <Section id="projects" title="Projects">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        <p className="mb-6 max-w-2xl text-muted">
+          Storefronts I've built and contributed to.
+        </p>
+        <SiteCarousel sites={sites} />
       </Section>
 
       <Section id="skills" title="Technical skills">

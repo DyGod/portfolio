@@ -1,26 +1,52 @@
-import { profile, stats } from "~/data/resume";
+import { Fragment } from "react";
+import { intro, profile, stats, type IntroSegment } from "~/data/resume";
+
+const highlightClass: Record<NonNullable<IntroSegment["highlight"]>, string> = {
+  primary: "text-primary",
+  accent: "text-accent",
+  "accent-2": "text-accent-2",
+};
 
 const secondaryButton =
-  "rounded-lg border border-border bg-surface px-5 py-2.5 font-medium text-heading transition-colors hover:border-primary hover:text-primary";
+  "border-2 border-border bg-surface px-5 py-2.5 font-medium text-heading transition-colors hover:border-primary hover:text-primary";
 
 export function Hero() {
   return (
     <section className="py-20 sm:py-28">
-      <p className="mb-4 font-display font-semibold text-primary">
-        {profile.title} <span className="text-accent">|</span> {profile.specialty}
-      </p>
-      <h1 className="font-display text-5xl font-extrabold tracking-tight text-heading sm:text-7xl">
+      <p className="mb-4 font-display text-xl font-bold text-heading sm:text-2xl">
         {profile.firstName} <span className="text-accent">{profile.lastName}</span>
+      </p>
+      <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-heading sm:text-5xl lg:text-6xl">
+        <span className="block">{profile.title}</span>
+        <span className="block text-accent">
+          {/* keep hyphenated words like "E-Commerce" from breaking across lines */}
+          {profile.specialty.split(" ").map((word, i) => (
+            <Fragment key={i}>
+              {i > 0 && " "}
+              <span className="whitespace-nowrap">{word}</span>
+            </Fragment>
+          ))}
+        </span>
       </h1>
-      <p className="mt-6 max-w-2xl text-lg text-muted">{profile.tagline}</p>
+      <p className="mt-6 max-w-2xl text-lg text-muted sm:text-xl">
+        {intro.map((segment, i) =>
+          segment.highlight ? (
+            <strong key={i} className={`font-semibold ${highlightClass[segment.highlight]}`}>
+              {segment.text}
+            </strong>
+          ) : (
+            <Fragment key={i}>{segment.text}</Fragment>
+          ),
+        )}
+      </p>
       <p className="mt-2 text-sm text-muted">📍 {profile.location}</p>
 
       <div className="mt-8 flex flex-wrap gap-3">
         <a
-          href="#projects"
-          className="rounded-lg bg-primary px-5 py-2.5 font-medium text-primary-fg transition-opacity hover:opacity-90"
+          href="#highlights"
+          className="border-2 border-primary bg-primary px-5 py-2.5 font-medium text-primary-fg transition-opacity hover:opacity-90"
         >
-          View projects
+          View highlights
         </a>
         <a href="#contact" className={secondaryButton}>
           Get in touch
