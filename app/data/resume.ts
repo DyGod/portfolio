@@ -120,6 +120,7 @@ export type SkillGlow =
   | "yellow";
 export type SkillGroup = { category: string; glow: SkillGlow; items: Skill[] };
 export type Stat = { value: string; label: string };
+export type KeySkill = { title: string; description: string };
 
 export const profile = {
   firstName: "Mark Dylan",
@@ -160,14 +161,20 @@ export const intro: IntroSegment[] = [
 
 export const introText = intro.map((segment) => segment.text).join("");
 
+export const credlyUrl = "https://www.credly.com/users/mark-dylan-cosca/badges";
+
 export const links: Link[] = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/mark-dylan-cosca-703230163",
   },
   {
+    label: "GitHub",
+    href: "https://github.com/DyGod",
+  },
+  {
     label: "Credly",
-    href: "https://www.credly.com/users/mark-dylan-cosca/badges",
+    href: credlyUrl,
   },
 ];
 
@@ -244,6 +251,11 @@ export const projects: Project[] = [
         value: "AI-assisted development, testing and project runs",
       },
     ],
+    media: {
+      type: "video",
+      src: "/videos/corza-highlights.mp4",
+      alt: "A paper procedures binder becomes AI-readable docs, a tested architecture and an approved B2B surgical-supply order.",
+    },
     tech: [
       "Shopify Hydrogen",
       "B2B Commerce",
@@ -271,12 +283,17 @@ export const projects: Project[] = [
       { label: "Catalog", value: "Complex product listings" },
       { label: "AI", value: "AI-assisted development" },
     ],
+    media: {
+      type: "video",
+      src: "/videos/spanx-highlights.mp4",
+      alt: "A runner crosses a storefront that loads in her wake, a cluttered product listing turns clean, traffic surges while the speed gauge stays fast, and page views climb past ten million.",
+    },
     tech: [
       "Shopify Hydrogen",
       "High-Traffic Scale",
       "Performance-First",
       "AI-Assisted QA",
-      "Global DTC Brand",
+      "Global Brand",
     ],
     links: [{ label: "Visit site", href: "https://spanx.com/" }],
   },
@@ -293,8 +310,16 @@ export const projects: Project[] = [
     ],
     facts: [
       { label: "Presence", value: "Global" },
-      { label: "Architecture", value: "1 storefront, 4 Shopify backends" },
+      {
+        label: "Architecture",
+        value: "1 codebase, multi-origin headless architecture",
+      },
     ],
+    media: {
+      type: "video",
+      src: "/videos/turtle-beach-highlights.mp4",
+      alt: "A processor renders a headset product page while four regional Shopify API nodes each send a pulse that switches its price and language between US, UK, German and Japanese storefronts.",
+    },
     tech: [
       "Shopify Hydrogen",
       "Multi-Store Architecture",
@@ -318,6 +343,11 @@ export const projects: Project[] = [
       { label: "Architecture", value: "3 brands, 1 codebase" },
       { label: "UI", value: "Shared component UI library" },
     ],
+    media: {
+      type: "video",
+      src: "/videos/solo-brands-highlights.mp4",
+      alt: "A surfboard, a kayak, shorts and a t-shirt fly into a small shop that turns into one web page, which becomes three differently themed brand storefronts sharing the same components from one codebase.",
+    },
     tech: [
       "Shopify Hydrogen",
       "Multi-Brand Architecture",
@@ -524,6 +554,40 @@ export const skills: SkillGroup[] = [
       { name: "Scoro", icon: "scoro" },
       { name: "Notion", icon: "notion" },
     ],
+  },
+];
+
+/* "What I bring to the table" — shown after Projects. */
+export const keySkills: KeySkill[] = [
+  {
+    title: "Custom Shopify storefronts",
+    description:
+      "Fully custom builds with Liquid, Hydrogen and Remix, plus custom Shopify apps, made for the brand rather than adapted from a template.",
+  },
+  {
+    title: "Performance-first frontend",
+    description:
+      "Maintainable React and TypeScript code that keeps high-traffic storefronts fast.",
+  },
+  {
+    title: "Complex catalogs & B2B",
+    description:
+      "Turning complex product listings and business requirements into clear, easy-to-shop UX.",
+  },
+  {
+    title: "AI-assisted development",
+    description:
+      "Claude Code and GitHub Copilot for code review, debugging, tests and docs, plus AI-powered storefront features.",
+  },
+  {
+    title: "Testing & CI/CD",
+    description:
+      "Pipelines, test coverage and documentation that keep large codebases reliable and easy to onboard into.",
+  },
+  {
+    title: "Full-stack range",
+    description:
+      "APIs and integrations behind the storefront, with a background in NodeJS, PHP/Laravel, Vue and WordPress.",
   },
 ];
 

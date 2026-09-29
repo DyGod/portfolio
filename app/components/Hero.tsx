@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { intro, profile, stats, type IntroSegment } from "~/data/resume";
+import { HeroVideo } from "./HeroVideo";
 
 const highlightClass: Record<NonNullable<IntroSegment["highlight"]>, string> = {
   primary: "text-primary",
@@ -70,6 +71,8 @@ export function Hero() {
           Resume
         </a>
       </div>
+
+      <HeroVideo />
     </section>
   );
 }

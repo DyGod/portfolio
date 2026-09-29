@@ -1,4 +1,4 @@
-import { fullName, links } from "~/data/resume";
+import { fullName, links, profile } from "~/data/resume";
 
 export function Footer() {
   return (
@@ -15,6 +15,11 @@ export function Footer() {
               </a>
             </li>
           ))}
+          <li>
+            <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className="hover:text-primary">
+              Resume
+            </a>
+          </li>
         </ul>
       </div>
     </footer>
