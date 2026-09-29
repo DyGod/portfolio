@@ -11,46 +11,70 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
 
-  --color-bg: #f6f8fb;         /* page background */
+  --color-bg: #f7f7f5;         /* page background — neutral off-white */
   --color-surface: #ffffff;    /* cards, header */
-  --color-fg: #1e293b;         /* main text */
-  --color-muted: #52607a;      /* secondary text */
-  --color-border: #dde3ec;     /* dividers, card borders */
+  --color-fg: #1a2230;         /* main text */
+  --color-muted: #3f4a5c;      /* secondary text (~8.5:1 on white) */
+  --color-border: #d9dde3;     /* dividers, card borders */
   --color-heading: #1f3a5f;    /* resume navy — headings, name */
   --color-primary: #1d5fb4;    /* resume blue — links, buttons */
   --color-primary-fg: #ffffff; /* text on primary */
-  --color-accent: #f58220;     /* resume orange — bars, bullets, highlights */
-  --color-accent-2: #8c699f;   /* purple — tech tags, skill years, small details */
-
-  --animate-marquee: marquee 40s linear infinite;
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
+  --color-accent: #f58220;     /* resume orange — bars, bullets, large display text */
+  --color-accent-strong: #b45309; /* darker orange for small text (dates, labels) */
+  --color-accent-2: #8c699f;   /* purple — tag borders, icons, small details */
+  --color-accent-2-strong: #6f4d85; /* darker purple for small text (tags, roles) */
+  --color-success: #16a34a;    /* "open to work" availability dot */
 }
 
-/* Dark mode: same roles, navy-based. Delete this block if you want light only. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --color-bg: #0d1726;
-    --color-surface: #142237;
-    --color-fg: #e5ebf3;
-    --color-muted: #9aabc3;
-    --color-border: #24344d;
-    --color-heading: #f1f5fa;
-    --color-primary: #6aa6ec;
-    --color-primary-fg: #0d1726;
-    --color-accent: #f7931e;
-    --color-accent-2: #b99bcc;
-  }
+/*
+ * Dark mode: same roles, navy-based. Opt-in only via the header toggle, which sets
+ * <html data-theme="dark"> (saved in localStorage). Light is always the default.
+ */
+:root {
+  color-scheme: light;
+  /* Skill icon rings, picked per group at runtime (so kept out of @theme, which drops unused vars) */
+  --color-neon-blue: #0ea5e9;   /* Frontend */
+  --color-neon-green: #22c55e;  /* Backend */
+  --color-neon-cyan: #06b6d4;   /* APIs & CMS */
+  --color-neon-pink: #ec4899;   /* Code Testing */
+  --color-neon-orange: var(--color-accent);   /* Analytics — brand orange */
+  --color-neon-purple: var(--color-accent-2); /* AI — accent-2 purple */
+  --color-neon-indigo: #6366f1; /* Build & Tooling */
+  --color-neon-yellow: #eab308; /* Project Management */
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0d1726;
+  --color-surface: #142237;
+  --color-fg: #e8edf4;
+  --color-muted: #b1bfd2;
+  --color-border: #2a3b55;
+  --color-heading: #f1f5fa;
+  --color-primary: #6aa6ec;
+  --color-primary-fg: #0d1726;
+  --color-accent: #f7931e;
+  --color-accent-strong: #f9a449;
+  --color-accent-2: #b99bcc;
+  --color-accent-2-strong: #cdb4dd;
+  --color-success: #22c55e;
+  --color-neon-blue: #38bdf8;
+  --color-neon-green: #4ade80;
+  --color-neon-cyan: #22d3ee;
+  --color-neon-pink: #f472b6;
+  --color-neon-indigo: #818cf8;
+  --color-neon-yellow: #facc15;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem; /* keep anchored sections clear of the sticky header */
+}
+
+/* Highlights card expand/collapse (View Transitions) */
+::view-transition-group(*) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 body {

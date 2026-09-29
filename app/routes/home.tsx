@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import { ExperienceItem } from "~/components/ExperienceItem";
 import { Hero } from "~/components/Hero";
-import { ProjectCard } from "~/components/ProjectCard";
+import { HighlightsGrid } from "~/components/HighlightsGrid";
 import { Section } from "~/components/Section";
 import { SiteCarousel } from "~/components/SiteCarousel";
 import { SkillList } from "~/components/SkillList";
@@ -35,15 +35,11 @@ export default function Home() {
     <>
       <Hero />
 
-      <Section id="highlights" title="Highlights">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+      <Section id="highlights" title="Highlights" subtitle="Behind the storefronts">
+        <HighlightsGrid projects={projects} />
       </Section>
 
-      <Section id="experience" title="Experience">
+      <Section id="experience" title="Experience" subtitle="The road so far">
         <ol className="space-y-8">
           {experience.map((item) => (
             <ExperienceItem key={`${item.company}-${item.start}`} item={item} />
@@ -51,25 +47,22 @@ export default function Home() {
         </ol>
       </Section>
 
-      <Section id="projects" title="Projects">
-        <p className="mb-6 max-w-2xl text-muted">
-          Storefronts I've built and contributed to.
-        </p>
+      <Section id="projects" title="Projects" subtitle="Storefronts I've built and contributed to.">
         <SiteCarousel sites={sites} />
       </Section>
 
-      <Section id="skills" title="Technical skills">
+      <Section id="skills" title="Skills" subtitle="What I used">
         <SkillList groups={skills} />
       </Section>
 
-      <Section id="credentials" title="Education & certifications">
+      <Section id="credentials" title="Education & certifications" subtitle="The foundation behind the work">
         <div className="grid gap-10 md:grid-cols-2">
           <ul className="space-y-4">
             {education.map((item) => (
               <li key={item.school}>
                 <h3 className="font-display font-bold text-heading">{item.school}</h3>
                 <p className="italic text-muted">{item.degree}</p>
-                <p className="text-sm font-semibold text-accent">
+                <p className="text-sm font-semibold text-accent-strong">
                   {item.start} – {item.end}
                 </p>
               </li>
@@ -89,9 +82,11 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="contact" title="Contact">
+      <Section id="contact" title="Contact" subtitle="Let's work together">
         <p className="max-w-2xl text-lg text-muted">
-          Building a custom Shopify or headless storefront? The best way to reach me is by email.
+          Looking for a full-stack developer? From fast, fully custom Shopify and headless
+          storefronts to the APIs and integrations behind them, I build frontends that scale.
+          The best way to reach me is by email.
         </p>
         <p className="mt-4 break-all font-display text-xl font-bold sm:text-2xl">
           <a href={`mailto:${profile.email}`} className="text-primary hover:underline">
@@ -102,7 +97,7 @@ export default function Home() {
           {links.map((link) => (
             <li key={link.href}>
               <a href={link.href} target="_blank" rel="noreferrer" className="font-medium text-muted hover:text-primary">
-                {link.label} ↗
+                {link.label} ↗&#xFE0E;
               </a>
             </li>
           ))}

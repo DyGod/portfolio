@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
+import { themeInitScript } from "./components/ThemeToggle";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -31,11 +32,13 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: themeInitScript may set data-theme before React hydrates
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#1f3a5f" />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <Meta />
         <Links />
       </head>

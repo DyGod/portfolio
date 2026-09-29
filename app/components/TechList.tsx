@@ -9,7 +9,7 @@ export function TechList({ items, className = "" }: TechListProps) {
       {items.map((item) => (
         <li
           key={item}
-          className="border-2 border-accent-2/40 px-3 py-1 text-xs font-semibold text-accent-2"
+          className="border-2 border-accent-2/50 px-3 py-1 text-xs font-semibold text-accent-2-strong"
         >
           {item}
         </li>

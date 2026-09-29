@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { profile } from "~/data/resume";
+import { ThemeToggle } from "./ThemeToggle";
 
 const nav = [
   { label: "Highlights", href: "/#highlights" },
@@ -36,6 +37,9 @@ export function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <ThemeToggle />
+            </li>
           </ul>
         </nav>
       </div>

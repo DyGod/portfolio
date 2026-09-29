@@ -14,14 +14,21 @@ export type Experience = {
   highlights: string[];
 };
 
+export type Fact = { label: string; value: string };
+
+export type Media =
+  | { type: "image"; src: string; alt: string }
+  | { type: "video"; src: string; poster?: string; alt: string };
+
 export type Project = {
   slug: string; // used in the URL: /projects/<slug>
   name: string;
-  platform: string;
-  summary: string;
-  role: string;
-  aiWorkflow?: string;
+  subtext: string; // short label above the name, e.g. "Surgical technologies"
+  summary: string; // shown clamped to 2 lines on the collapsed Highlights card
   description?: string[]; // optional longer write-up for the project page
+  contributions: string[]; // detailed "My contributions" list in the expanded card
+  facts: Fact[]; // key facts under the media: scale, integrations, unique features…
+  media?: Media; // video/screenshot for the expanded card; a placeholder shows until set
   tech: string[];
   links: Link[];
 };
@@ -33,16 +40,93 @@ export type Education = {
   end: string;
 };
 
-export type Skill = { name: string; years?: string };
-export type SkillGroup = { category: string; items: Skill[] };
+/* Icon keys map to logos/glyphs in app/components/SkillIcon.tsx */
+export type SkillIconKey =
+  // Frontend
+  | "html5"
+  | "css"
+  | "javascript"
+  | "typescript"
+  | "react"
+  | "remix"
+  | "nextjs"
+  | "vue"
+  | "shopify"
+  | "tailwind"
+  | "sass"
+  | "ionic"
+  | "quasar"
+  // Backend
+  | "nodejs"
+  | "nestjs"
+  | "express"
+  | "php"
+  | "laravel"
+  | "wordpress"
+  | "postgresql"
+  | "supabase"
+  // APIs & CMS
+  | "rest"
+  | "graphql"
+  | "stripe"
+  | "algolia"
+  | "sanity"
+  | "builder"
+  | "pack"
+  | "shogun"
+  // Data & Testing
+  | "vitest"
+  | "jest"
+  | "testinglibrary"
+  | "storybook"
+  | "googleanalytics"
+  | "googletagmanager"
+  | "tracking"
+  | "consent"
+  | "seo"
+  // AI
+  | "mcp"
+  | "sparkles"
+  | "workflow"
+  | "claude"
+  | "copilot"
+  // Build & Tooling
+  | "cicd"
+  | "vite"
+  | "webpack"
+  | "rollup"
+  | "eslint"
+  | "prettier"
+  | "sentry"
+  // Project Management
+  | "git"
+  | "github"
+  | "gitlab"
+  | "jira"
+  | "clickup"
+  | "scoro"
+  | "notion";
+/* `icon` shows a logo/glyph; brands without one show `mono` (short text) inside the ring instead. */
+export type Skill = { name: string; icon?: SkillIconKey; mono?: string };
+/* Each category gets its own neon ring color (--color-neon-<glow> in app.css). */
+export type SkillGlow =
+  | "blue"
+  | "green"
+  | "cyan"
+  | "pink"
+  | "orange"
+  | "purple"
+  | "indigo"
+  | "yellow";
+export type SkillGroup = { category: string; glow: SkillGlow; items: Skill[] };
 export type Stat = { value: string; label: string };
 
 export const profile = {
   firstName: "Mark Dylan",
   lastName: "Cosca",
-  title: "Frontend Developer",
-  specialty: "Shopify & Headless E-Commerce",
-  location: "Pasig City, Philippines",
+  title: "Full-Stack Developer",
+  specialty: "Digital Commerce Expert",
+  availability: "Open to work · Globally",
   email: "coscamarkdylan@hotmail.com",
   siteUrl: "https://markdylan.dev",
   resumeUrl: "/resume.pdf", // drop the PDF into public/resume.pdf
@@ -60,7 +144,10 @@ export const stats: Stat[] = [
  * Short intro shown in the hero. Segments with a `highlight` are emphasized
  * in that accent color: "primary" (blue), "accent" (orange), "accent-2" (purple).
  */
-export type IntroSegment = { text: string; highlight?: "primary" | "accent" | "accent-2" };
+export type IntroSegment = {
+  text: string;
+  highlight?: "primary" | "accent" | "accent-2";
+};
 
 export const intro: IntroSegment[] = [
   { text: "Frontend developer", highlight: "primary" },
@@ -74,8 +161,14 @@ export const intro: IntroSegment[] = [
 export const introText = intro.map((segment) => segment.text).join("");
 
 export const links: Link[] = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/mark-dylan-cosca-703230163" },
-  { label: "Credly", href: "https://www.credly.com/users/mark-dylan-cosca/badges" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/mark-dylan-cosca-703230163",
+  },
+  {
+    label: "Credly",
+    href: "https://www.credly.com/users/mark-dylan-cosca/badges",
+  },
 ];
 
 export const experience: Experience[] = [
@@ -134,45 +227,104 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
+    slug: "corza",
+    name: "Corza",
+    subtext: "Surgical technologies",
+    summary:
+      "Quality surgical products for every specialty, essential in surgery's most critical moments.",
+    contributions: [
+      "Established the project's CI/CD pipeline and AI-assisted development workflows, standardizing how the team builds, tests and ships.",
+      "Built robust test coverage and technical documentation to keep a large B2B codebase reliable and easy to onboard into.",
+      "Developed the B2B storefront UX/UI, turning complex business requirements into clear, usable purchasing experiences.",
+    ],
+    facts: [
+      { label: "Scale", value: "Large B2B system" },
+      {
+        label: "AI",
+        value: "AI-assisted development, testing and project runs",
+      },
+    ],
+    tech: [
+      "Shopify Hydrogen",
+      "B2B Commerce",
+      "AI-Driven Architecture",
+      "CI/CD Automation",
+      "Test-Driven Quality",
+    ],
+    links: [{ label: "Visit site", href: "https://corza.com/global/" }],
+  },
+  {
     slug: "spanx",
     name: "Spanx",
-    platform: "Shopify Hydrogen",
+    subtext: "Women's shapewear",
     summary:
-      "American apparel brand (shapewear, leggings, essentials) built with Shopify Hydrogen (Remix), GraphQL and 3rd-party applications.",
-    role: "Code architecture, frontend development, 3rd-party integration for SEO and fulfillment apps.",
-    aiWorkflow:
-      "AI-assisted review, debugging and testing (Claude Code, GitHub Copilot); AI-powered storefront features.",
-    tech: ["Shopify Hydrogen", "Remix", "GraphQL"],
-    links: [],
+      "Women's shapewear, AirEssentials loungewear, shaping jeans, leggings, bras and bodysuits: premium styles that smooth and shape.",
+    contributions: [
+      "Re-engineered complex product listings into an intuitive, easy-to-shop UX/UI for a global audience.",
+      "Wrote maintainable, performance-first code that keeps the storefront fast under high traffic.",
+      "Drove AI-assisted workflows across architecture, development and testing to ship faster with confidence.",
+    ],
+    facts: [
+      { label: "Reach", value: "Globally known brand" },
+      { label: "Traffic", value: "High-traffic storefront" },
+      { label: "Performance", value: "Fast site speed" },
+      { label: "Catalog", value: "Complex product listings" },
+      { label: "AI", value: "AI-assisted development" },
+    ],
+    tech: [
+      "Shopify Hydrogen",
+      "High-Traffic Scale",
+      "Performance-First",
+      "AI-Assisted QA",
+      "Global DTC Brand",
+    ],
+    links: [{ label: "Visit site", href: "https://spanx.com/" }],
   },
   {
-    slug: "grown-alchemist",
-    name: "Grown Alchemist",
-    platform: "Shopify Hydrogen",
+    slug: "turtle-beach",
+    name: "Turtle Beach",
+    subtext: "Premium gaming",
     summary:
-      "Luxury cosmetics e-commerce storefront built with Shopify Hydrogen (Remix), GraphQL and 3rd-party applications.",
-    role: "Frontend development, 3rd-party integration for SEO and fulfillment apps.",
-    tech: ["Shopify Hydrogen", "Remix", "GraphQL"],
-    links: [],
+      "Industry-leading, award-winning gaming headsets, built to help every player play their best, at every level, in every game.",
+    contributions: [
+      "Unified 4 Shopify backends behind a single codebase, delivering one seamless storefront experience across stores.",
+      "Integrated multiple sales channels to power cross-border commerce for a global brand.",
+      "Built landing pages and PDPs with complex, content-rich sections.",
+    ],
+    facts: [
+      { label: "Presence", value: "Global" },
+      { label: "Architecture", value: "1 storefront, 4 Shopify backends" },
+    ],
+    tech: [
+      "Shopify Hydrogen",
+      "Multi-Store Architecture",
+      "Cross-Border Commerce",
+      "Multi-Channel Sales",
+    ],
+    links: [{ label: "Visit site", href: "https://www.turtlebeach.com/" }],
   },
   {
-    slug: "defyned-brands",
-    name: "Defyned Brands",
-    platform: "Shopify Hydrogen",
+    slug: "solo-brands",
+    name: "Solo Brands",
+    subtext: "DTC lifestyle brands",
     summary:
-      "Fitness/supplement e-commerce storefront built with Shopify Hydrogen (Remix), GraphQL and 3rd-party applications.",
-    role: "Frontend development, 3rd-party integration for SEO and fulfillment apps.",
-    tech: ["Shopify Hydrogen", "Remix", "GraphQL"],
-    links: [],
-  },
-  {
-    slug: "shona-joy",
-    name: "Shona Joy",
-    platform: "Shopify Website",
-    summary: "High-demand fashion e-commerce storefront built with Shopify 2.0, Vue, SCSS and fulfillment apps.",
-    role: "Full development of PDP/PLP and 3rd-party integration.",
-    tech: ["Shopify 2.0", "Vue", "SCSS"],
-    links: [],
+      "A portfolio of respected, distinctive and adventurous lifestyle brands built around creating great moments and greater memories.",
+    contributions: [
+      "Architected a single codebase that powers 3 DTC brand storefronts.",
+      "Built a shared component UI library, reducing duplication and simplifying maintenance across brands.",
+      "Integrated a CMS and Shopify metaobjects so each brand can manage its own content independently on one platform.",
+    ],
+    facts: [
+      { label: "Architecture", value: "3 brands, 1 codebase" },
+      { label: "UI", value: "Shared component UI library" },
+    ],
+    tech: [
+      "Shopify Hydrogen",
+      "Multi-Brand Architecture",
+      "Shared Component Library",
+      "Metaobject-Driven CMS",
+    ],
+    links: [{ label: "Visit site", href: "https://solobrands.com/" }],
   },
 ];
 
@@ -184,52 +336,193 @@ export type Site = { name: string; url: string; logo: string };
 
 export const sites: Site[] = [
   { name: "Spanx", url: "https://spanx.com/", logo: "/logos/spanx.png" },
-  { name: "Turtle Beach", url: "https://www.turtlebeach.com/", logo: "/logos/turtle-beach.png" },
-  { name: "e.l.f. Cosmetics", url: "https://www.elfcosmetics.com/", logo: "/logos/elf.png" },
-  { name: "Boll & Branch", url: "https://www.bollandbranch.com/", logo: "/logos/boll-and-branch.png" },
-  { name: "Chubbies", url: "https://www.chubbiesshorts.com/", logo: "/logos/chubbies.png" },
-  { name: "5 Star Nutrition", url: "https://5starnutrition.com/", logo: "/logos/5-star-nutrition.png" },
-  { name: "Grown Alchemist", url: "https://grownalchemist.com/", logo: "/logos/grown-alchemist.png" },
+  {
+    name: "Turtle Beach",
+    url: "https://www.turtlebeach.com/",
+    logo: "/logos/turtle-beach.png",
+  },
+  {
+    name: "e.l.f. Cosmetics",
+    url: "https://www.elfcosmetics.com/",
+    logo: "/logos/elf.png",
+  },
+  {
+    name: "Boll & Branch",
+    url: "https://www.bollandbranch.com/",
+    logo: "/logos/boll-and-branch.png",
+  },
+  {
+    name: "Chubbies",
+    url: "https://www.chubbiesshorts.com/",
+    logo: "/logos/chubbies.png",
+  },
+  {
+    name: "ISLE",
+    url: "https://islesurfandsup.com/",
+    logo: "/logos/isle.png",
+  },
+  {
+    name: "Oru Kayak",
+    url: "https://www.orukayak.com/",
+    logo: "/logos/oru-kayak.png",
+  },
+  {
+    name: "5 Star Nutrition",
+    url: "https://5starnutrition.com/",
+    logo: "/logos/5-star-nutrition.png",
+  },
+  {
+    name: "Grown Alchemist",
+    url: "https://grownalchemist.com/",
+    logo: "/logos/grown-alchemist.png",
+  },
   { name: "Nomad", url: "https://nomadgoods.com/", logo: "/logos/nomad.png" },
-  { name: "Strandbags", url: "https://www.strandbags.com.au/", logo: "/logos/strandbags.png" },
-  { name: "Shona Joy", url: "https://shonajoy.com/", logo: "/logos/shona-joy.png" },
+  {
+    name: "Strandbags",
+    url: "https://www.strandbags.com.au/",
+    logo: "/logos/strandbags.png",
+  },
+  {
+    name: "Shona Joy",
+    url: "https://shonajoy.com/",
+    logo: "/logos/shona-joy.png",
+  },
+  {
+    name: "Quiksilver",
+    url: "https://www.quiksilver.com/",
+    logo: "/logos/quiksilver.png",
+  },
+  {
+    name: "Billabong",
+    url: "https://www.billabong.com/",
+    logo: "/logos/billabong.png",
+  },
+  {
+    name: "MOTHER",
+    url: "https://www.motherdenim.com/",
+    logo: "/logos/mother.png",
+  },
+  {
+    name: "Gunner",
+    url: "https://gunner.com/",
+    logo: "/logos/gunner.png",
+  },
+  {
+    name: "Harbour",
+    url: "https://shopharbour.com/",
+    logo: "/logos/harbour.png",
+  },
 ];
 
 export const skills: SkillGroup[] = [
   {
     category: "Frontend",
+    glow: "blue",
     items: [
-      { name: "HTML / CSS / JavaScript", years: "10+" },
-      { name: "Shopify / Liquid / Apps", years: "6+" },
-      { name: "ReactJS / Remix / Next", years: "6+" },
-      { name: "VueJS", years: "5+" },
+      { name: "HTML5", icon: "html5" },
+      { name: "CSS", icon: "css" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "React", icon: "react" },
+      { name: "Remix", icon: "remix" },
+      { name: "Next.js", icon: "nextjs" },
+      { name: "Vue.js", icon: "vue" },
+      { name: "Shopify & Liquid", icon: "shopify" },
+      { name: "Tailwind CSS", icon: "tailwind" },
+      { name: "CSS Modules", mono: "CM" },
+      { name: "SCSS", icon: "sass" },
+      { name: "Ionic", icon: "ionic" },
+      { name: "Quasar", icon: "quasar" },
     ],
   },
   {
     category: "Backend",
+    glow: "green",
     items: [
-      { name: "PHP / Laravel / Custom", years: "6+" },
-      { name: "NodeJS / Nest / Express", years: "6+" },
+      { name: "Node.js", icon: "nodejs" },
+      { name: "NestJS", icon: "nestjs" },
+      { name: "Express", icon: "express" },
+      { name: "PHP", icon: "php" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "WordPress", icon: "wordpress" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "Supabase", icon: "supabase" },
     ],
   },
   {
-    category: "Other",
+    category: "APIs & CMS",
+    glow: "cyan",
     items: [
-      { name: "GraphQL" },
-      { name: "SCSS" },
-      { name: "WordPress" },
-      { name: "Ionic" },
-      { name: "Quasar" },
-      { name: "SEO" },
+      { name: "REST APIs", icon: "rest" },
+      { name: "GraphQL", icon: "graphql" },
+      { name: "Stripe", icon: "stripe" },
+      { name: "Algolia", icon: "algolia" },
+      { name: "Klaviyo", mono: "K" },
+      { name: "Yotpo", mono: "Y" },
+      { name: "Builder.io", icon: "builder" },
+      { name: "Sanity", icon: "sanity" },
+      { name: "Pack CMS", icon: "pack" },
+      { name: "Shogun", icon: "shogun" },
     ],
   },
   {
-    category: "Key skills",
+    category: "Analytics",
+    glow: "orange",
     items: [
-      { name: "Detailed interpersonal and work communication" },
-      { name: "AI-assisted development (Claude Code, GitHub Copilot)" },
-      { name: "Adaptable problem solving" },
-      { name: "Advanced e-commerce knowledge and development" },
+      { name: "GA4", icon: "googleanalytics" },
+      { name: "GTM", icon: "googletagmanager" },
+      { name: "Server-side tracking", icon: "tracking" },
+      { name: "A/B testing", mono: "A/B" },
+      { name: "GDPR/CCPA", icon: "consent" },
+      { name: "SEO", icon: "seo" },
+    ],
+  },
+  {
+    category: "Code Testing",
+    glow: "pink",
+    items: [
+      { name: "Vitest", icon: "vitest" },
+      { name: "Jest", icon: "jest" },
+      { name: "Playwright", mono: "PW" },
+      { name: "Testing Library", icon: "testinglibrary" },
+      { name: "Storybook", icon: "storybook" },
+    ],
+  },
+  {
+    category: "AI",
+    glow: "purple",
+    items: [
+      { name: "MCP", icon: "mcp" },
+      { name: "AI Skills", icon: "sparkles" },
+      { name: "AI Workflows", icon: "workflow" },
+      { name: "Claude Code", icon: "claude" },
+      { name: "GitHub Copilot", icon: "copilot" },
+    ],
+  },
+  {
+    category: "Build & Tooling",
+    glow: "indigo",
+    items: [
+      { name: "CI/CD", icon: "cicd" },
+      { name: "Vite", icon: "vite" },
+      { name: "Webpack", icon: "webpack" },
+      { name: "Rollup", icon: "rollup" },
+      { name: "ESLint", icon: "eslint" },
+      { name: "Prettier", icon: "prettier" },
+      { name: "Sentry", icon: "sentry" },
+    ],
+  },
+  {
+    category: "Project Management",
+    glow: "yellow",
+    items: [
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+      { name: "GitLab", icon: "gitlab" },
+      { name: "Jira", icon: "jira" },
+      { name: "ClickUp", icon: "clickup" },
+      { name: "Scoro", icon: "scoro" },
+      { name: "Notion", icon: "notion" },
     ],
   },
 ];

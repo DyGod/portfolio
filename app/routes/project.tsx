@@ -16,19 +16,15 @@ export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) return [{ title: `Not found — ${fullName}` }];
   const { project } = loaderData;
   return [
-    { title: `${project.name} (${project.platform}) — ${fullName}` },
+    { title: `${project.name} (${project.subtext}) — ${fullName}` },
     { name: "description", content: project.summary },
-    { property: "og:title", content: `${project.name} — ${project.platform}` },
+    { property: "og:title", content: `${project.name} — ${project.subtext}` },
     { property: "og:description", content: project.summary },
   ];
 }
 
 export default function ProjectPage({ loaderData }: Route.ComponentProps) {
   const { project } = loaderData;
-  const details = [
-    { label: "Role", text: project.role },
-    ...(project.aiWorkflow ? [{ label: "AI workflow", text: project.aiWorkflow }] : []),
-  ];
 
   return (
     <article className="py-16">
@@ -36,18 +32,28 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
         ← All highlights
       </Link>
 
-      <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-accent">{project.platform}</p>
+      <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-accent-strong">{project.subtext}</p>
       <h1 className="mt-1 font-display text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
         {project.name}
       </h1>
       <p className="mt-4 max-w-3xl text-lg text-muted">{project.summary}</p>
       <TechList items={project.tech} className="mt-6" />
 
-      <dl className="mt-10 max-w-3xl space-y-6">
-        {details.map((detail) => (
-          <div key={detail.label} className="border-l-2 border-accent pl-4">
-            <dt className="font-display font-bold text-heading">{detail.label}</dt>
-            <dd className="mt-1 text-muted">{detail.text}</dd>
+      <h2 className="mt-10 text-xs font-semibold uppercase tracking-wider text-accent-2-strong">My contributions</h2>
+      <ul className="mt-3 max-w-3xl space-y-2 text-lg">
+        {project.contributions.map((item) => (
+          <li key={item} className="relative pl-5">
+            <span aria-hidden className="absolute left-0 text-accent-2">▸</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <dl className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
+        {project.facts.map((fact) => (
+          <div key={fact.label} className="border-l-2 border-accent pl-4">
+            <dt className="text-xs font-semibold uppercase tracking-wider text-muted">{fact.label}</dt>
+            <dd className="mt-1 font-medium text-heading">{fact.value}</dd>
           </div>
         ))}
       </dl>
@@ -70,7 +76,7 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
                 rel="noreferrer"
                 className="inline-block border-2 border-border bg-surface px-4 py-2 font-medium transition-colors hover:border-primary"
               >
-                {link.label} ↗
+                {link.label} ↗&#xFE0E;
               </a>
             </li>
           ))}

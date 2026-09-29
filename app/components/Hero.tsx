@@ -14,7 +14,8 @@ export function Hero() {
   return (
     <section className="py-20 sm:py-28">
       <p className="mb-4 font-display text-xl font-bold text-heading sm:text-2xl">
-        {profile.firstName} <span className="text-accent">{profile.lastName}</span>
+        {profile.firstName}{" "}
+        <span className="text-accent">{profile.lastName}</span>
       </p>
       <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-heading sm:text-5xl lg:text-6xl">
         <span className="block">{profile.title}</span>
@@ -31,7 +32,10 @@ export function Hero() {
       <p className="mt-6 max-w-2xl text-lg text-muted sm:text-xl">
         {intro.map((segment, i) =>
           segment.highlight ? (
-            <strong key={i} className={`font-semibold ${highlightClass[segment.highlight]}`}>
+            <strong
+              key={i}
+              className={`font-semibold ${highlightClass[segment.highlight]}`}
+            >
               {segment.text}
             </strong>
           ) : (
@@ -39,7 +43,13 @@ export function Hero() {
           ),
         )}
       </p>
-      <p className="mt-2 text-sm text-muted">📍 {profile.location}</p>
+      <p className="mt-3 flex items-center gap-2 text-sm font-medium text-muted">
+        <span aria-hidden className="relative flex size-2.5">
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60 motion-reduce:animate-none" />
+          <span className="relative inline-flex size-2.5 rounded-full bg-success" />
+        </span>
+        {profile.availability}
+      </p>
 
       <div className="mt-8 flex flex-wrap gap-3">
         <a
@@ -51,19 +61,15 @@ export function Hero() {
         <a href="#contact" className={secondaryButton}>
           Get in touch
         </a>
-        <a href={profile.resumeUrl} target="_blank" rel="noreferrer" className={secondaryButton}>
+        <a
+          href={profile.resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          className={secondaryButton}
+        >
           Resume
         </a>
       </div>
-
-      <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-4 sm:gap-6">
-        {stats.map((stat) => (
-          <div key={stat.label} className="flex flex-col border-l-2 border-accent pl-3 sm:pl-4">
-            <dt className="text-sm text-muted">{stat.label}</dt>
-            <dd className="order-first font-display text-3xl font-bold text-heading">{stat.value}</dd>
-          </div>
-        ))}
-      </dl>
     </section>
   );
 }
