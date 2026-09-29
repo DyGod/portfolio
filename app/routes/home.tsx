@@ -132,10 +132,11 @@ export default function Home() {
                 Let's work together
               </h3>
               <p className="mt-4 max-w-2xl text-lg text-muted">
-                Looking for a full-stack developer? From fast, fully custom
-                Shopify and headless storefronts to the APIs and integrations
-                behind them, I build frontends that scale. The best way to reach
-                me is by email.
+                Looking for a full-stack developer? I own the full experience
+                end to end: fast, intuitive frontends, seamless API
+                integrations and robust backends built to scale. My specialty
+                is e-commerce and Shopify, from custom themes and apps to
+                headless storefronts. The best way to reach me is by email.
               </p>
             </div>
             <div>

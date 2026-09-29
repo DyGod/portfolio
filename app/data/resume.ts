@@ -151,12 +151,16 @@ export type IntroSegment = {
 };
 
 export const intro: IntroSegment[] = [
-  { text: "Frontend developer", highlight: "primary" },
-  { text: " with 9+ years building fast, fully custom " },
-  { text: "Shopify & e-commerce", highlight: "accent" },
-  { text: " storefronts, using " },
-  { text: "AI workflows", highlight: "accent-2" },
-  { text: " for code review, testing and smarter storefront features." },
+  { text: "Full-stack developer", highlight: "primary" },
+  { text: " specializing in frontend, with " },
+  { text: "9+ years", highlight: "primary" },
+  { text: " building fast, fully custom " },
+  { text: "e-commerce", highlight: "accent" },
+  { text: " storefronts and the " },
+  { text: "APIs", highlight: "accent" },
+  { text: " that power them, leveraging " },
+  { text: "AI-driven development", highlight: "accent-2" },
+  { text: " from system design and well-documented codebases to automated testing and site features." },
 ];
 
 export const introText = intro.map((segment) => segment.text).join("");
