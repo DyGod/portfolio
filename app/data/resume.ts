@@ -184,7 +184,7 @@ export const links: Link[] = [
 
 export const experience: Experience[] = [
   {
-    role: "Frontend Developer",
+    role: "Software Engineer",
     company: "Form Factory",
     type: "Full-time",
     start: "Sept 2022",
