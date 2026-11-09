@@ -120,29 +120,34 @@ export default function Home() {
               </p>
             </li>
           ))}
+          <li>
+            <h3 className="font-display font-bold text-heading">
+              Certifications <span className="text-accent-strong">|</span>{" "}
+              <a
+                href={credlyUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-sans text-sm font-normal italic text-accent-2-strong hover:underline"
+              >
+                Verify on Credly ↗&#xFE0E;
+              </a>
+            </h3>
+            <ul className="mt-2 space-y-1">
+              {certifications.map((cert) => (
+                <li key={cert} className="relative pl-5 text-muted">
+                  <span aria-hidden className="absolute left-0 text-accent">
+                    •
+                  </span>
+                  {cert}
+                </li>
+              ))}
+            </ul>
+          </li>
         </ol>
       </Section>
 
       <Section id="how-i-work" title="How I work" subtitle="Ownership, end to end">
         <CardGrid items={howIWork} />
-      </Section>
-
-      <Section id="certifications" title="Certifications" subtitle="Shopify certified">
-        <ul className="flex flex-wrap gap-3">
-          {certifications.map((cert) => (
-            <li key={cert} className="border-2 border-border border-t-4 border-t-accent bg-surface px-5 py-3 font-medium text-heading">
-              {cert}
-            </li>
-          ))}
-        </ul>
-        <a
-          href={credlyUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-6 inline-block font-medium text-primary hover:underline"
-        >
-          Verify badges on Credly ↗&#xFE0E;
-        </a>
       </Section>
 
       <Section id="contact" title="Contact">

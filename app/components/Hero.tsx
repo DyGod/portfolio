@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { intro, linkedInUrl, profile, stats, type IntroSegment } from "~/data/resume";
+import { intro, linkedInUrl, profile, type IntroSegment } from "~/data/resume";
 import { HeroVideo } from "./HeroVideo";
 
 const highlightClass: Record<NonNullable<IntroSegment["highlight"]>, string> = {
@@ -35,18 +35,7 @@ export function Hero() {
         )}
       </p>
 
-      <dl className="mt-10 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
-        {stats.map((stat) => (
-          <div key={stat.label} className="flex flex-col border-l-4 border-accent pl-4">
-            <dt className="text-sm text-muted">{stat.label}</dt>
-            <dd className="order-first font-display text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
-              {stat.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
-
-      <div className="mt-10 flex flex-wrap gap-3">
+      <div className="mt-8 flex flex-wrap gap-3">
         <a
           href={`mailto:${profile.email}`}
           className="border-2 border-primary bg-primary px-5 py-2.5 font-medium text-primary-fg transition-opacity hover:opacity-90"
