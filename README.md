@@ -25,7 +25,7 @@ Personal portfolio built with [React Router v8](https://reactrouter.com/) framew
 
 Components only use semantic color utilities (`bg-bg`, `bg-surface`, `text-fg`, `text-muted`, `text-primary`, `border-border`, `text-accent`), so changing a token in `app.css` restyles the whole site.
 
-Adding a project to `projects` in `resume.ts` automatically creates its `/projects/<slug>` page (see `react-router.config.ts`).
+Adding a project to `projects` in `resume.ts` automatically creates its `/projects/<slug>` page (see `react-router.config.ts`). Set `kind: "client"` for case studies or `kind: "side"` for side projects; side projects without `media` show a "Preview coming soon" placeholder until a screenshot or video is added.
 
 ## Deploy
 

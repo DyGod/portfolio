@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from
 import { flushSync } from "react-dom";
 import { Link } from "react-router";
 import type { Media, Project } from "~/data/resume";
+import { ProjectStory } from "./ProjectStory";
 import { TechList } from "./TechList";
 
 /*
@@ -91,13 +92,15 @@ function CollapsedCard({ project, onOpen }: { project: Project; onOpen: () => vo
       type="button"
       onClick={onOpen}
       aria-expanded={false}
-      aria-label={`Expand ${project.name} details`}
       className="group flex h-full w-full cursor-pointer flex-col p-6 text-left"
     >
       <span className="absolute top-5 right-5 text-muted transition-colors group-hover:text-accent">
         <ExpandIcon expanded={false} />
       </span>
-      <span className="pr-10 text-xs font-semibold uppercase tracking-wider text-accent-strong">{project.subtext}</span>
+      <span className="pr-10 text-xs font-semibold uppercase tracking-wider text-accent-strong">
+        {project.subtext}
+        {project.period && <span className="text-muted"> · {project.period}</span>}
+      </span>
       <span className="mt-1 pr-10 font-display text-xl font-bold text-heading group-hover:text-primary">
         {project.name}
       </span>
@@ -138,21 +141,16 @@ function ExpandedCard({
       <div className="grid gap-8 md:grid-cols-2">
         {/* Text column: stays on the side the card was clicked from */}
         <div className={side === "right" ? "md:order-last" : ""}>
-          <p className="pr-10 text-xs font-semibold uppercase tracking-wider text-accent-strong">{project.subtext}</p>
+          <p className="pr-10 text-xs font-semibold uppercase tracking-wider text-accent-strong">
+            {project.subtext}
+            {project.period && <span className="text-muted"> · {project.period}</span>}
+          </p>
           <h3 className="mt-1 pr-10 font-display text-3xl font-extrabold tracking-tight text-heading">
             {project.name}
           </h3>
           <p className="mt-4 text-muted">{project.summary}</p>
 
-          <h4 className="mt-8 text-xs font-semibold uppercase tracking-wider text-accent-2-strong">My contributions</h4>
-          <ul className="mt-3 space-y-2">
-            {project.contributions.map((item) => (
-              <li key={item} className="relative pl-5">
-                <span aria-hidden className="absolute left-0 text-accent-2">▸</span>
-                {item}
-              </li>
-            ))}
-          </ul>
+          <ProjectStory project={project} />
 
           <TechList items={project.tech} className="mt-8" />
 

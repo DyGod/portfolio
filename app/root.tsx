@@ -11,23 +11,26 @@ import type { Route } from "./+types/root";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { themeInitScript } from "./components/ThemeToggle";
+import "./fonts.css";
+import "@fontsource/poppins/latin-600.css";
+import "@fontsource/poppins/latin-700.css";
+import "@fontsource/poppins/latin-800.css";
+import openSansUrl from "@fontsource-variable/open-sans/files/open-sans-latin-wght-normal.woff2?url";
+import poppins700Url from "@fontsource/poppins/files/poppins-latin-700-normal.woff2?url";
+import poppins800Url from "@fontsource/poppins/files/poppins-latin-800-normal.woff2?url";
 import "./app.css";
+
+// Self-hosted fonts (no render-blocking third-party stylesheet). Preload the faces used above the fold.
+const preloadFont = (href: string) => ({ rel: "preload", href, as: "font", type: "font/woff2", crossOrigin: "anonymous" as const });
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
   { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
   { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   { rel: "manifest", href: "/site.webmanifest" },
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400..700;1,400..700&family=Poppins:wght@600;700;800&display=swap",
-  },
+  preloadFont(openSansUrl),
+  preloadFont(poppins700Url),
+  preloadFont(poppins800Url),
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

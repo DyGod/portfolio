@@ -1,5 +1,6 @@
 import { Link, data } from "react-router";
 import type { Route } from "./+types/project";
+import { ProjectStory } from "~/components/ProjectStory";
 import { TechList } from "~/components/TechList";
 import { fullName, projects } from "~/data/resume";
 
@@ -16,10 +17,11 @@ export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData) return [{ title: `Not found — ${fullName}` }];
   const { project } = loaderData;
   return [
-    { title: `${project.name} (${project.subtext}) — ${fullName}` },
+    { title: `${project.name} (${project.subtext}) | ${fullName}` },
     { name: "description", content: project.summary },
     { property: "og:title", content: `${project.name} — ${project.subtext}` },
     { property: "og:description", content: project.summary },
+    { name: "twitter:card", content: "summary" },
   ];
 }
 
@@ -28,26 +30,23 @@ export default function ProjectPage({ loaderData }: Route.ComponentProps) {
 
   return (
     <article className="py-16">
-      <Link to="/#highlights" className="text-sm font-medium text-muted hover:text-primary">
-        ← All highlights
+      <Link to="/#work" className="text-sm font-medium text-muted hover:text-primary">
+        ← All work
       </Link>
 
-      <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-accent-strong">{project.subtext}</p>
+      <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-accent-strong">
+        {project.subtext}
+        {project.period && <span className="text-muted"> · {project.period}</span>}
+      </p>
       <h1 className="mt-1 font-display text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
         {project.name}
       </h1>
       <p className="mt-4 max-w-3xl text-lg text-muted">{project.summary}</p>
       <TechList items={project.tech} className="mt-6" />
 
-      <h2 className="mt-10 text-xs font-semibold uppercase tracking-wider text-accent-2-strong">My contributions</h2>
-      <ul className="mt-3 max-w-3xl space-y-2 text-lg">
-        {project.contributions.map((item) => (
-          <li key={item} className="relative pl-5">
-            <span aria-hidden className="absolute left-0 text-accent-2">▸</span>
-            {item}
-          </li>
-        ))}
-      </ul>
+      <div className="max-w-3xl">
+        <ProjectStory project={project} large />
+      </div>
 
       <dl className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
         {project.facts.map((fact) => (

@@ -3,11 +3,11 @@ import { profile } from "~/data/resume";
 import { ThemeToggle } from "./ThemeToggle";
 
 const nav = [
-  { label: "Highlights", href: "/#highlights" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
   { label: "Skills", href: "/#skills" },
-  { label: "Contact Me", href: "/#contact", highlight: true },
+  { label: "Experience", href: "/#experience" },
+  { label: "Contact", href: "/#contact", highlight: true },
 ];
 
 const linkStyle = "transition-colors hover:text-primary";
@@ -23,7 +23,7 @@ export function Header() {
           className="font-display text-lg font-bold tracking-tight text-heading"
         >
           {profile.firstName}{" "}
-          <span className="text-accent">{profile.lastName}</span>
+          <span className="text-accent-strong">{profile.lastName}</span>
         </Link>
         <nav>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-muted">

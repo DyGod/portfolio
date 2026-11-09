@@ -45,6 +45,23 @@ import {
   siVuedotjs,
   siWebpack,
   siWordpress,
+  siCloudflare,
+  siCursor,
+  siDocker,
+  siFastify,
+  siGithubactions,
+  siHubspot,
+  siJsonwebtokens,
+  siKotlin,
+  siLighthouse,
+  siMeta,
+  siMongodb,
+  siMysql,
+  siNetlify,
+  siPython,
+  siRedis,
+  siSwift,
+  siVercel,
 } from "simple-icons";
 import type { SkillIconKey } from "~/data/resume";
 
@@ -75,17 +92,29 @@ const glyphs: Record<SkillIconKey, Glyph> = {
   nodejs: brand(siNodedotjs),
   nestjs: brand(siNestjs),
   express: brand(siExpress),
+  fastify: brand(siFastify),
+  python: brand(siPython),
   php: brand(siPhp),
   laravel: brand(siLaravel),
   wordpress: brand(siWordpress),
   postgresql: brand(siPostgresql),
   supabase: brand(siSupabase),
+  mongodb: brand(siMongodb),
+  mysql: brand(siMysql),
+  redis: brand(siRedis),
   // APIs
   rest: {
     stroke: true,
     d: "M8 4C6 4 6 5.5 6 7v2c0 1.5-1 3-2 3 1 0 2 1.5 2 3v2c0 1.5 0 3 2 3M16 4c2 0 2 1.5 2 3v2c0 1.5 1 3 2 3-1 0-2 1.5-2 3v2c0 1.5 0 3-2 3",
   },
   graphql: brand(siGraphql),
+  webhooks: {
+    stroke: true,
+    d: "M9 8a3 3 0 1 1 5.2 2L11 15.5M6.3 13.2A3 3 0 1 0 9 18h6M15 18a3 3 0 1 0 2.7-4.3L14.5 8",
+  },
+  jwt: brand(siJsonwebtokens),
+  hubspot: brand(siHubspot),
+  meta: brand(siMeta),
   stripe: brand(siStripe),
   algolia: brand(siAlgolia),
   // CMS brands missing from Simple Icons: marks taken from each company's own favicon/logo
@@ -100,6 +129,11 @@ const glyphs: Record<SkillIconKey, Glyph> = {
   jest: brand(siJest),
   testinglibrary: brand(siTestinglibrary),
   storybook: brand(siStorybook),
+  lighthouse: brand(siLighthouse),
+  accessibility: {
+    stroke: true,
+    d: "M12 4.5h.01M5 8l7 1.5L19 8M12 9.5V14l-3 6M12 14l3 6",
+  },
   googleanalytics: brand(siGoogleanalytics),
   googletagmanager: brand(siGoogletagmanager),
   tracking: { stroke: true, d: "M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01M12 7h4M12 17h4" },
@@ -118,6 +152,18 @@ const glyphs: Record<SkillIconKey, Glyph> = {
   },
   claude: brand(siClaude),
   copilot: brand(siGithubcopilot),
+  cursor: brand(siCursor),
+  vercel: brand(siVercel),
+  // Mobile
+  kotlin: brand(siKotlin),
+  swift: brand(siSwift),
+  // DevOps & Cloud
+  docker: brand(siDocker),
+  githubactions: brand(siGithubactions),
+  netlify: brand(siNetlify),
+  cloudflare: brand(siCloudflare),
+  cloud: { stroke: true, d: "M7 18a4 4 0 0 1-.6-7.95A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9z" },
+  monitoring: { stroke: true, d: "M3 12h4l2-5 4 10 2-5h6" },
   // Build & Tooling
   cicd: {
     stroke: true,
@@ -129,6 +175,15 @@ const glyphs: Record<SkillIconKey, Glyph> = {
   eslint: brand(siEslint),
   prettier: brand(siPrettier),
   sentry: brand(siSentry),
+  // Leadership
+  architecture: { stroke: true, d: "M12 3 3 7.5l9 4.5 9-4.5zM3 12l9 4.5 9-4.5M3 16.5 12 21l9-4.5" },
+  scoping: { stroke: true, d: "M9 4h6v3H9zM7 5.5H5V21h14V5.5h-2M8 12h8M8 16h5" },
+  standards: { stroke: true, d: "M4 6l2 2 3-3M4 12l2 2 3-3M4 18l2 2 3-3M12 7h8M12 13h8M12 19h8" },
+  codereview: { stroke: true, d: "M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" },
+  mentoring: {
+    stroke: true,
+    d: "M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM2.5 20a6.5 6.5 0 0 1 13 0M16.5 4.5a3.5 3.5 0 0 1 0 6.5M18 14.5a6.5 6.5 0 0 1 3.5 5.5",
+  },
   // Project Management
   git: brand(siGit),
   github: brand(siGithub),
