@@ -162,6 +162,16 @@ export const profile = {
 
 export const fullName = `${profile.firstName} ${profile.lastName}`;
 
+/* Link-preview (Open Graph / Twitter) image, 1200×630, at public/og-image.jpg. */
+export const shareImageMeta = [
+  { property: "og:image", content: `${profile.siteUrl}/og-image.jpg` },
+  { property: "og:image:width", content: "1200" },
+  { property: "og:image:height", content: "630" },
+  { property: "og:image:alt", content: `${fullName}, ${profile.title}` },
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:image", content: `${profile.siteUrl}/og-image.jpg` },
+];
+
 /* Proof stats shown large in the hero (all from the Spanx build). */
 export const stats: Stat[] = [
   { value: "10M", label: "Monthly visitors served on Spanx" },

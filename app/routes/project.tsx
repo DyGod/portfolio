@@ -2,7 +2,7 @@ import { Link, data } from "react-router";
 import type { Route } from "./+types/project";
 import { ProjectStory } from "~/components/ProjectStory";
 import { TechList } from "~/components/TechList";
-import { fullName, projects } from "~/data/resume";
+import { fullName, projects, shareImageMeta } from "~/data/resume";
 
 // Runs at build time (pre-rendering), so project pages ship as static HTML.
 export function loader({ params }: Route.LoaderArgs) {
@@ -21,7 +21,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
     { name: "description", content: project.summary },
     { property: "og:title", content: `${project.name} — ${project.subtext}` },
     { property: "og:description", content: project.summary },
-    { name: "twitter:card", content: "summary" },
+    ...shareImageMeta,
   ];
 }
 

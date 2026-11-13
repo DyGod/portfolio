@@ -20,6 +20,7 @@ import {
   migrations,
   openSkillGroups,
   profile,
+  shareImageMeta,
   sideProjects,
   sites,
   skills,
@@ -38,7 +39,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:description", content: description },
     { property: "og:type", content: "website" },
     { property: "og:url", content: profile.siteUrl },
-    { name: "twitter:card", content: "summary" },
+    ...shareImageMeta,
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
     {
